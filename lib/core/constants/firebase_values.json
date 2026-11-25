@@ -1,0 +1,76 @@
+{
+  "project_id": "carfix-33875",
+  "app_version": "2.4.0",
+  "collections": [
+    "users",
+    "spare_parts",
+    "garages",
+    "appointments",
+    "diagnostic_reports",
+    "categories",
+    "oil_brands",
+    "oil_formulas",
+    "app_config",
+    "audit_logs"
+  ],
+  "roles": {
+    "admin": {
+      "key": "admin",
+      "display_name": "System Administrator",
+      "permissions": ["all"]
+    },
+    "client": {
+      "key": "client",
+      "display_name": "Car Owner",
+      "permissions": ["book_appointment", "search_parts", "view_reports"]
+    },
+    "spare_parts_dealer": {
+      "key": "spare_parts_dealer",
+      "display_name": "Spare Parts Dealer",
+      "permissions": ["manage_inventory", "manage_parts", "view_orders"]
+    },
+    "oil_change_garage": {
+      "key": "oil_change_garage",
+      "display_name": "Oil Change Garage",
+      "permissions": ["manage_appointments", "manage_oil_stock"]
+    },
+    "scanner_garage": {
+      "key": "scanner_garage",
+      "display_name": "Scanner Diagnostic Garage",
+      "permissions": ["manage_appointments", "upload_diagnostic_reports"]
+    }
+  },
+  "appointment_statuses": [
+    "pending",
+    "confirmed",
+    "in_progress",
+    "completed",
+    "cancelled",
+    "rejected"
+  ],
+  "service_types": [
+    "oil_change",
+    "scanner_diagnosis",
+    "general_checkup"
+  ],
+  "default_categories": [
+    "Engine Oils & Lubricants",
+    "Brakes & Braking Systems",
+    "Air Induction & Intake",
+    "Engine Mechanical & Forced Induction",
+    "Filters (Oil, Air, Fuel, Cabin)",
+    "Suspension & Steering",
+    "Batteries & Electrical",
+    "Tires & Wheels",
+    "Transmission & Clutch",
+    "Body & Lighting"
+  ],
+  "part_spec_tags": [
+    "Standard Spec",
+    "High Temp Teflon",
+    "Specialty Order",
+    "High Thermal",
+    "OEM Replacement",
+    "Track & Street"
+  ]
+}
