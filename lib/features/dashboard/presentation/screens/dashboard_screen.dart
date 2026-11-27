@@ -1,5 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:carfix/core/constants/app_colors.dart';
+import 'package:carfix/core/widgets/admin_profile_dialog.dart';
+import 'package:carfix/features/approvals/presentation/screens/approvals_screen.dart';
 import 'package:carfix/features/oils_catalog/presentation/screens/oils_catalog_screen.dart';
 import 'package:carfix/features/parts_catalog/presentation/screens/parts_catalog_screen.dart';
 import 'package:carfix/features/oils_catalog/data/services/oils_catalog_service.dart';
@@ -389,8 +391,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Review Pending Partners (Urgent CTA)
                 InkWell(
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Navigating to Approvals portal...')),
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (_) => const ApprovalsScreen()),
                     );
                   },
                   borderRadius: BorderRadius.circular(12),
@@ -758,17 +760,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
-          child: Container(
-            width: 32,
-            height: 32,
-            decoration: const BoxDecoration(
-              color: AppColors.primaryOrange,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.person,
-              color: Colors.white,
-              size: 18,
+          child: InkWell(
+            onTap: () => AdminProfileDialog.show(context),
+            borderRadius: BorderRadius.circular(16),
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: const BoxDecoration(
+                color: AppColors.primaryOrange,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 18,
+              ),
             ),
           ),
         ),
@@ -812,6 +818,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         } else if (index == 2) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => const PartsCatalogScreen()),
+          );
+        } else if (index == 3) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const ApprovalsScreen()),
           );
         }
       },

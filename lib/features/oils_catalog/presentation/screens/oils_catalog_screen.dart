@@ -1,5 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/widgets/admin_profile_dialog.dart';
+import 'package:carfix/features/approvals/presentation/screens/approvals_screen.dart';
 import 'package:carfix/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:carfix/features/parts_catalog/presentation/screens/parts_catalog_screen.dart';
 import '../../data/models/oil_brand_model.dart';
@@ -356,15 +358,19 @@ class _OilsCatalogScreenState extends State<OilsCatalogScreen> {
         ],
       ),
       actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 16),
-          width: 32,
-          height: 32,
-          decoration: const BoxDecoration(
-            color: AppColors.primaryOrange,
-            shape: BoxShape.circle,
+        InkWell(
+          onTap: () => AdminProfileDialog.show(context),
+          borderRadius: BorderRadius.circular(16),
+          child: Container(
+            margin: const EdgeInsets.only(right: 16),
+            width: 32,
+            height: 32,
+            decoration: const BoxDecoration(
+              color: AppColors.primaryOrange,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.person, color: Colors.white, size: 18),
           ),
-          child: const Icon(Icons.person, color: Colors.white, size: 18),
         ),
       ],
     );
@@ -442,6 +448,10 @@ class _OilsCatalogScreenState extends State<OilsCatalogScreen> {
         } else if (index == 2) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => const PartsCatalogScreen()),
+          );
+        } else if (index == 3) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const ApprovalsScreen()),
           );
         } else {
           setState(() => _currentNavIndex = index);

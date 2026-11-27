@@ -2,8 +2,9 @@ import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'core/constants/app_colors.dart';
+import 'core/theme/theme_controller.dart';
 import 'features/splash/presentation/screens/splash_screen.dart';
-import 'features/oils_catalog/presentation/screens/oils_catalog_screen.dart';
+import 'features/auth/presentation/screens/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,31 +34,46 @@ class CarFixApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'CARfix - Precision Auto Care',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: AppColors.surface,
-        colorScheme: const ColorScheme.dark(
-          primary: AppColors.primaryOrange,
-          secondary: AppColors.orangeGlow,
-          surface: AppColors.surfaceContainer,
-        ),
-      ),
-      home: Builder(
-        builder: (context) {
-          return SplashScreen(
-            onInitialized: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (_) => const OilsCatalogScreen(),
-                ),
+    return AnimatedBuilder(
+      animation: ThemeController.instance,
+      builder: (context, _) {
+        return MaterialApp(
+          title: 'CARfix - Precision Auto Care',
+          debugShowCheckedModeBanner: false,
+          themeMode: ThemeController.instance.themeMode,
+          theme: ThemeData(
+            brightness: Brightness.light,
+            scaffoldBackgroundColor: const Color(0xFFF4F5F7),
+            colorScheme: const ColorScheme.light(
+              primary: AppColors.primaryOrange,
+              secondary: AppColors.orangeGlow,
+              surface: Colors.white,
+            ),
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: AppColors.surface,
+            colorScheme: const ColorScheme.dark(
+              primary: AppColors.primaryOrange,
+              secondary: AppColors.orangeGlow,
+              surface: AppColors.surfaceContainer,
+            ),
+          ),
+          home: Builder(
+            builder: (context) {
+              return SplashScreen(
+                onInitialized: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (_) => const LoginScreen(),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

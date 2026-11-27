@@ -1,5 +1,7 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:carfix/core/constants/app_colors.dart';
+import 'package:carfix/core/widgets/admin_profile_dialog.dart';
+import 'package:carfix/features/approvals/presentation/screens/approvals_screen.dart';
 import 'package:carfix/features/dashboard/presentation/screens/dashboard_screen.dart';
 import 'package:carfix/features/oils_catalog/presentation/screens/oils_catalog_screen.dart';
 import 'package:carfix/features/parts_catalog/data/models/part_category_model.dart';
@@ -401,17 +403,21 @@ class _PartsCatalogScreenState extends State<PartsCatalogScreen> {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
-          child: Container(
-            width: 32,
-            height: 32,
-            decoration: const BoxDecoration(
-              color: AppColors.primaryOrange,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.person,
-              color: Colors.white,
-              size: 18,
+          child: InkWell(
+            onTap: () => AdminProfileDialog.show(context),
+            borderRadius: BorderRadius.circular(16),
+            child: Container(
+              width: 32,
+              height: 32,
+              decoration: const BoxDecoration(
+                color: AppColors.primaryOrange,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 18,
+              ),
             ),
           ),
         ),
@@ -455,6 +461,10 @@ class _PartsCatalogScreenState extends State<PartsCatalogScreen> {
         } else if (index == 1) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => const OilsCatalogScreen()),
+          );
+        } else if (index == 3) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const ApprovalsScreen()),
           );
         }
       },
